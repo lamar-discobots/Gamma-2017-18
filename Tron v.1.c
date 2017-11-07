@@ -50,7 +50,7 @@ void pre_auton()
 
 task autonomous()
 {
-	motor[Lift1_L]= 127;
+	motor[Lift1_L]= 126;
 	motor[Lift1_R]= 127;
 	wait(0.5);
 	motor[Lift1_L]= 0;
