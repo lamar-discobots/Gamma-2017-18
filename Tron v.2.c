@@ -52,14 +52,14 @@ task autonomous()
 {
 	motor[Lift1_L]= 127;
 	motor[Lift1_R]= 127;
-	wait1Msec(500);
+	wait(0.5);
 	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
 // The lift moves up 0.5 second
 
 	motor[Left]= 127;
 	motor[Right]= 127;
-	wait1Msec(1850);
+	wait(1.95);
 	motor[Left]= 0;
 	motor[Right]= 0;
 //Robot goes forward for 1.95 seconds
@@ -78,23 +78,23 @@ task autonomous()
 
 	motor[Lift1_L]= 100;
 	motor[Lift1_R]= 100;
-	wait(0.25);
+	wait(0.5);
 //The lift moves up 0.25 second
  	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
 //The lift stops
 
-	motor[InstaL]= 127;
-	motor[InstaR]= 127;
-	wait(0.5);
+	motor[InstaL]= 100;
+	motor[InstaR]= 100;
+	wait(1);
 //Mobile goal goes forward
 
 	motor[InstaL]= 0;
 	motor[InstaR]= 0;
 //Mobile goal stops
 
-	motor[InstaL]= -127;
-	motor[InstaR]= -127;
+	motor[InstaL]= -100;
+	motor[InstaR]= -100;
 //Mobile goal goes backward
 
 	motor[InstaL&&InstaR]=0;
