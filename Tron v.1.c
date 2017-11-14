@@ -76,15 +76,31 @@ task autonomous()
 	wait(0.5);
 //Opens claw
 
+	motor[InstaL]= 127;
+	motor[InstaR]= 127;
+	wait(0.5);
+//Mobile goal goes forward
+
+	motor[InstaL]= 0;
+	motor[InstaR]= 0;
+//Mobile goal stops
+
+	motor[InstaL]= -127;
+	motor[InstaR]= -127;
+//Mobile goal goes backward
+
+	motor[InstaL&&InstaR]=0;
+//Mobile goal stops
+
 	motor[Left]= -127;
 	motor[Right]= -127;
 	wait(1);
 	motor[Left]= 0;
 	motor[Right]= 0;
-// Goes backward for 1 second
+//Goes backward for 1 second
 
 	motor[Claw]= 0;
-// Claw stops
+//Claw stops
 }
 
 task usercontrol()
