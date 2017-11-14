@@ -76,6 +76,14 @@ task autonomous()
 	wait(0.5);
 //Opens claw
 
+	motor[Lift1_L]= 100;
+	motor[Lift1_R]= 100;
+	wait(0.25);
+//The lift moves up 0.25 second
+ 	motor[Lift1_L]= 0;
+	motor[Lift1_R]= 0;
+//The lift stops
+
 	motor[InstaL]= 127;
 	motor[InstaR]= 127;
 	wait(0.5);
