@@ -1,6 +1,9 @@
+#pragma config(I2C_Usage, I2C1, i2cSensors)
+#pragma config(Sensor, I2C_1,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
+#pragma config(Sensor, I2C_2,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
 #pragma config(Motor,  port1,           InstaL,        tmotorVex393_HBridge, openLoop, reversed)
-#pragma config(Motor,  port2,           Left,          tmotorVex393_MC29, openLoop, reversed)
-#pragma config(Motor,  port3,           Right,         tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port2,           Left,          tmotorVex393_MC29, openLoop, reversed, encoderPort, I2C_2)
+#pragma config(Motor,  port3,           Right,         tmotorVex393_MC29, openLoop, encoderPort, I2C_1)
 #pragma config(Motor,  port5,           Claw,          tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port8,           Lift1_R,       tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port9,           Lift1_L,       tmotorVex393_MC29, openLoop)
@@ -50,16 +53,19 @@ void pre_auton()
 
 task autonomous()
 {
-	void autoDrive (int speed)
+	SensorValue[Left] = 0;
+	SensorValue[Right] = 0;
+
+	int tickGoal= 28.65*27.55906;
+
+	while (SensorValue[Left&&Right] < tickGoal)
 	{
-		motor[Left] = speed;
-		motor[Right] = speed;
+		motor[Left]= 127;
+		motor[Right]= 127;
 	}
-
-
-	int WheelDiameter = 4;
-	int encoderTicks = 360;
-	int q1, q2, q3, q4
+	motor[Left]= 0;
+	motor[Right]= 0;
+}
 	/*
 	motor[Lift1_L]= 127;
 	motor[Lift1_R]= 127;
