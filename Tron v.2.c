@@ -50,6 +50,17 @@ void pre_auton()
 
 task autonomous()
 {
+	void autoDrive (int speed)
+	{
+		motor[Left] = speed;
+		motor[Right] = speed;
+	}
+
+
+	int WheelDiameter = 4;
+	int encoderTicks = 360;
+	int q1, q2, q3, q4
+	/*
 	motor[Lift1_L]= 127;
 	motor[Lift1_R]= 127;
 	wait(0.5);
@@ -109,7 +120,7 @@ task autonomous()
 
 	motor[Claw]= 0;
 //Claw stops
-}
+}*/
 
 task usercontrol()
 {
