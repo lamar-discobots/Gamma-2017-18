@@ -53,38 +53,28 @@ void pre_auton()
 
 task autonomous()
 {
-	SensorValue[Left] = 0;
-	SensorValue[Right] = 0;
-
-	int tickGoal= 28.65*27.55906;
-
-	while (SensorValue[Left&&Right] < tickGoal)
-	{
-		motor[Left]= 127;
-		motor[Right]= 127;
-	}
-	motor[Left]= 0;
-	motor[Right]= 0;
-}
-	/*
 	motor[Lift1_L]= 127;
 	motor[Lift1_R]= 127;
 	wait(0.5);
 	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
-// The lift moves up 0.5 second
+// The lift moves up 0.5 seconds
 
-	motor[Left]= 127;
-	motor[Right]= 127;
-	wait(1.95);
-	motor[Left]= 0;
-	motor[Right]= 0;
-//Robot goes forward for 1.95 seconds
+	nMotorEncoder[Left]= 0;
+	nMotorEncoder[Right]= 0;
+
+	while(abs(nMotorEncoder[Left]) < 2480.3154 )
+	while(abs(nMotorEncoder[Right]) < 2480.3154)
+	{
+		motor[Left]= 127;
+		motor[Right]= 127;
+	}
+//Robot goes forward
 
 	motor[Lift1_L]= -100;
 	motor[Lift1_R]= -100;
 	wait(0.25);
-//The lift moves down 0.25 second
+//The lift moves down 0.25 seconds
  	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
 //The lift stops
@@ -96,7 +86,7 @@ task autonomous()
 	motor[Lift1_L]= 100;
 	motor[Lift1_R]= 100;
 	wait(0.5);
-//The lift moves up 0.25 second
+//The lift moves up 0.25 seconds
  	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
 //The lift stops
@@ -117,16 +107,39 @@ task autonomous()
 	motor[InstaL&&InstaR]=0;
 //Mobile goal stops
 
-	motor[Left]= -127;
-	motor[Right]= -127;
-	wait(1);
-	motor[Left]= 0;
-	motor[Right]= 0;
-//Goes backward for 1 second
+	nMotorEncoder[Left]= 0;
+	nMotorEncoder[Right]= 0;
+
+	while(abs(nMotorEncoder[Left]) < 1000)
+	while(abs(nMotorEncoder[Right]) < 1000)
+	{
+		motor[Left]= -100;
+		motor[Right]= -100;
+	}
+// Robot goes backwards
 
 	motor[Claw]= 0;
 //Claw stops
+
+	/*#define abs(X) ((X < 0) ? -1 * X : X)
+
+	void driveDistance(int tenthsOfIn, int power)
+	{
+	SensorValue[Left] = 0;
+	SensorValue[Right] = 0;
+
+	int tickGoal= (29* tenthsOfIn) / 10;
+
+	while (abs(SensorValue[Left&&Right]) < tickGoal)
+	{
+		motor[Left]= power;
+		motor[Right]= power;
+	}
+	motor[Left]= 0;
+	motor[Right]= 0;
+	}
 }*/
+}
 
 task usercontrol()
 {
