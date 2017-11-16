@@ -55,26 +55,28 @@ task autonomous()
 {
 	motor[Lift1_L]= 127;
 	motor[Lift1_R]= 127;
-	wait(0.5);
+	wait(1);
 	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
-// The lift moves up 0.5 seconds
+// The lift moves up 1 second
 
 	nMotorEncoder[Left]= 0;
 	nMotorEncoder[Right]= 0;
 
-	while(abs(nMotorEncoder[Left]) < 2480.3154 )
-	while(abs(nMotorEncoder[Right]) < 2480.3154)
+	while(abs(nMotorEncoder[Left]) < 20000)
+	while(abs(nMotorEncoder[Right]) < 2000)
 	{
 		motor[Left]= 127;
 		motor[Right]= 127;
 	}
+	motor[Left]= 0;
+	motor[Right]= 0;
 //Robot goes forward
 
 	motor[Lift1_L]= -100;
 	motor[Lift1_R]= -100;
-	wait(0.25);
-//The lift moves down 0.25 seconds
+	wait(0.5);
+//The lift moves down 0.5 seconds
  	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
 //The lift stops
@@ -85,8 +87,8 @@ task autonomous()
 
 	motor[Lift1_L]= 100;
 	motor[Lift1_R]= 100;
-	wait(0.5);
-//The lift moves up 0.25 seconds
+	wait(1);
+//The lift moves up 1 second
  	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
 //The lift stops
@@ -98,10 +100,11 @@ task autonomous()
 
 	motor[InstaL]= 0;
 	motor[InstaR]= 0;
-//Mobile goal stops
+//M0obile goal stops
 
 	motor[InstaL]= -100;
 	motor[InstaR]= -100;
+	wait(1);
 //Mobile goal goes backward
 
 	motor[InstaL&&InstaR]=0;
@@ -116,6 +119,8 @@ task autonomous()
 		motor[Left]= -100;
 		motor[Right]= -100;
 	}
+	motor[Left]= 0;
+	motor[Right]= 0;
 // Robot goes backwards
 
 	motor[Claw]= 0;
