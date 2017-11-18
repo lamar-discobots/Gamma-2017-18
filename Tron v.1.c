@@ -194,7 +194,7 @@ task usercontrol()
 		else if (RaiseDown == 1){
 			motor [RaiseL] = -127;
 			motor [RaiseR] = -127;}
-			// Lift 1 to go down
+// Raise to go down
 		else{
 			motor [RaiseL] = 0;
 			motor [RaiseR] = 0;}
