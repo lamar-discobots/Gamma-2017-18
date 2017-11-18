@@ -125,8 +125,6 @@ task usercontrol()
 		int clawclose=vexRT(Btn5D);
 		int mobileup=vexRT(Btn8U);
 		int mobiledown=vexRT(Btn8D);
-		int RaiseUp=vexRT (Btn6U);
-		int RaiseDown=vexRT (Btn6D);
 		int RaiseUpManual=vexRT (Btn7U);
 		int RaiseDownManual=vexRT (Btn7D);
 
@@ -149,18 +147,24 @@ task usercontrol()
 		if (liftup == 1){
 			motor [Lift1_R] = 127;
 			motor [Lift1_L] = 127;
+			motor [RaiseR] = 127;
+			motor [RaiseL] = 127;
 		}
-// Lift 1 to go up
+// Lift 1 and raise to go up
 		else if (liftdown == 1){
 			motor [Lift1_L] = -127;
 			motor [Lift1_R] = -127;
+			motor [RaiseR] = -127;
+			motor [RaiseL] = -127;
 		}
-// Lift 1 to go down
+// Lift 1 and raiseto go down
 		else{
 			motor [Lift1_R] = 0;
 			motor [Lift1_L] = 0;
+			motor [RaiseR] = 0;
+			motor [RaiseL] = 0;
 		}
-// If the Lift 1 button isn't pressed then it won't move
+// If the Lift 1 button isn't pressed then it won't move and the raise wont move
 
 		if (clawopen == 1)
 	  	motor [Claw] = 127;
@@ -184,20 +188,7 @@ task usercontrol()
   		motor [InstaR] = 0;
   		motor [InstaL] = 0;
   	}
-// Rightside of the drivetrain
 
-		if (RaiseUp == 1){
-			motor [RaiseR] = 127;
-			motor [RaiseL] = 127;
-		}
-// Raise to go up
-		else if (RaiseDown == 1){
-			motor [RaiseL] = -127;
-			motor [RaiseR] = -127;}
-// Raise to go down
-		else{
-			motor [RaiseL] = 0;
-			motor [RaiseR] = 0;}
 //RaiseUpManual
 			if (RaiseUpManual == 1){
 			motor [RaiseR] = 127;
