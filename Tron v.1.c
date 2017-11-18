@@ -2,6 +2,8 @@
 #pragma config(Motor,  port2,           Left,          tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port3,           Right,         tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port5,           Claw,          tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port6,           RaiseR,        tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port7,           RaiseL,        tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port8,           Lift1_R,       tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port9,           Lift1_L,       tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port10,          InstaR,        tmotorVex393_HBridge, openLoop)
@@ -66,19 +68,19 @@ task autonomous()
 
 	motor[Lift1_L]= -100;
 	motor[Lift1_R]= -100;
-	wait(0.25);
+	wait1Msec(250);
 //The lift moves down 0.25 second
  	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
 //The lift stops
 
 	motor[Claw]= 127;
-	wait(0.5);
+	wait1Msec(500);
 //Opens claw
 
 	motor[Lift1_L]= 100;
 	motor[Lift1_R]= 100;
-	wait(0.25);
+	wait1Msec(250);
 //The lift moves up 0.25 second
  	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
@@ -86,7 +88,7 @@ task autonomous()
 
 	motor[InstaL]= 127;
 	motor[InstaR]= 127;
-	wait(0.5);
+	wait1Msec(500);
 //Mobile goal goes forward
 
 	motor[InstaL]= 0;
@@ -102,7 +104,7 @@ task autonomous()
 
 	motor[Left]= -127;
 	motor[Right]= -127;
-	wait(1);
+	wait1Msec(1000);
 	motor[Left]= 0;
 	motor[Right]= 0;
 //Goes backward for 1 second
@@ -123,6 +125,10 @@ task usercontrol()
 		int clawclose=vexRT(Btn5D);
 		int mobileup=vexRT(Btn8U);
 		int mobiledown=vexRT(Btn8D);
+		int RaiseUp=vexRT (Btn6U);
+		int RaiseDown=vexRT (Btn6D);
+		int RaiseUpManual=vexRT (Btn7U);
+		int RaiseDownManual=vexRT (Btn7D);
 
 		if (leftside >=10)
 			{motor [Left] =leftside;}
@@ -178,7 +184,33 @@ task usercontrol()
   		motor [InstaR] = 0;
   		motor [InstaL] = 0;
   	}
+// Rightside of the drivetrain
 
+		if (RaiseUp == 1){
+			motor [RaiseR] = 127;
+			motor [RaiseL] = 127;
+		}
+// Raise to go up
+		else if (RaiseDown == 1){
+			motor [RaiseL] = -127;
+			motor [RaiseR] = -127;}
+			// Lift 1 to go down
+		else{
+			motor [RaiseL] = 0;
+			motor [RaiseR] = 0;}
+//RaiseUpManual
+			if (RaiseUpManual == 1){
+			motor [RaiseR] = 127;
+			motor [RaiseL] = 127;
+		}
+// Raise to go up
+		else if (RaiseDownManual == 1){
+			motor [RaiseL] = -127;
+			motor [RaiseR] = -127;}
+// Raise 1 to go down
+		else{
+			motor [RaiseR] = 0;
+			motor [RaiseL] = 0;}
     UserControlCodePlaceholderForTesting();
   }
 }
