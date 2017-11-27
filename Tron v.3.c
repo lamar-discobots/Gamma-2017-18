@@ -59,11 +59,20 @@ task autonomous()
 	motor[Lift1_R]= 0;
 // The lift moves up 0.5 second
 
+	motor[InstaL]= 100;
+	motor[InstaR]= 100;
+	wait(1);
+//Mobile goal goes forward
+
+	motor[InstaL]= 0;
+	motor[InstaR]= 0;
+//M0obile goal stops
+
 	nMotorEncoder[Left]= 0;
 	nMotorEncoder[Right]= 0;
 
-	while(abs(nMotorEncoder[Left]) < 20000)
-	while(abs(nMotorEncoder[Right]) < 2000)
+	while(abs(nMotorEncoder[Left]) < 1500)
+	while(abs(nMotorEncoder[Right]) < 1500)
 	{
 		motor[Left]= 127;
 		motor[Right]= 127;
@@ -75,7 +84,7 @@ task autonomous()
 	motor[Lift1_L]= -100;
 	motor[Lift1_R]= -100;
 	wait(0.25);
-//The lift moves down 0.5 seconds
+//The lift moves down 0.25 seconds
  	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
 //The lift stops
@@ -92,15 +101,6 @@ task autonomous()
 	motor[Lift1_R]= 0;
 //The lift stops
 
-	motor[InstaL]= 100;
-	motor[InstaR]= 100;
-	wait(1);
-//Mobile goal goes forward
-
-	motor[InstaL]= 0;
-	motor[InstaR]= 0;
-//M0obile goal stops
-
 	motor[InstaL]= -100;
 	motor[InstaR]= -100;
 	wait(1);
@@ -112,8 +112,8 @@ task autonomous()
 	nMotorEncoder[Left]= 0;
 	nMotorEncoder[Right]= 0;
 
-	while(abs(nMotorEncoder[Left]) < 1000)
-	while(abs(nMotorEncoder[Right]) < 1000)
+	while(abs(nMotorEncoder[Left]) < 500)
+	while(abs(nMotorEncoder[Right]) < 500)
 	{
 		motor[Left]= -100;
 		motor[Right]= -100;
