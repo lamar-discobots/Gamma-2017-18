@@ -1,7 +1,7 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
 
-enum Ports{
+enum Ports{               //RobotC Names
   insta_left = 1,         //InstaL
   left_motor = 2,         // Left
   right_motor = 3,        // Right
