@@ -32,4 +32,10 @@ void autonomous() {
   wait(1);
   motorSet(left_motor, 0);
   motorSet(right_motor, 0);
+  wait(3);
+  motorSet(left_motor, 127);
+  motorSet(right_motor, 127);
+  wait(1);
+  motorSet(left_motor, 0);
+  motorSet(right_motor, 0);
 }
