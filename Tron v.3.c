@@ -58,7 +58,7 @@ task autonomous()
 	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
 // The lift moves up 0.5 second
-/*
+
 	motor[InstaL]= 100;
 	motor[InstaR]= 100;
 	wait(1);
@@ -67,19 +67,15 @@ task autonomous()
 	motor[InstaL]= 0;
 	motor[InstaR]= 0;
 //Mobile goal stops
-	*/
 
-	resetMotorEncoder(Left);
-	resetMotorEncoder(Right);
 
-	while(getMotorEncoder(Left) < 627)
-	while(getMotorEncoder(Right) < 627)
+	resetMotorEncoder(Left&&Right);
+
+	while(getMotorEncoder(Left&&Right) < 627)
 	{
-		motor[Left]= 127;
-		motor[Right]= 127;
+		motor[Left&&Right]= 127;
 	}
-	motor[Left]= 0;
-	motor[Right]= 0;
+	motor[Left&&Right]= 0;
 //Robot goes forward
 
 	motor[Lift1_L]= -100;
@@ -110,17 +106,13 @@ task autonomous()
 	motor[InstaL&&InstaR]=0;
 //Mobile goal stops
 
-	nMotorEncoder[Left]= 0;
-	nMotorEncoder[Right]= 0;
+	resetMotorEncoder(Left&&Right);
 
-	while(abs(nMotorEncoder[Left]) < 500)
-	while(abs(nMotorEncoder[Right]) < 500)
+	while(getMotorEncoder(Left&&Right) < 627)
 	{
-		motor[Left]= -100;
-		motor[Right]= -100;
+		motor[Left&&Right]= -127;
 	}
-	motor[Left]= 0;
-	motor[Right]= 0;
+	motor[Left&&Right]= 0;
 // Robot goes backwards
 
 	motor[Claw]= 0;
