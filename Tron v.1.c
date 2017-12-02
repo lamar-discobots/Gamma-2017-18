@@ -123,10 +123,10 @@ task usercontrol()
 		int liftdown=vexRT(Btn6D);
 		int clawopen=vexRT(Btn5U);
 		int clawclose=vexRT(Btn5D);
-		int mobileup=vexRT(Btn8U);
-		int mobiledown=vexRT(Btn8D);
-		int RaiseUpManual=vexRT (Btn7U);
-		int RaiseDownManual=vexRT (Btn7D);
+		int mobileup=vexRT(Btn8D);
+		int mobiledown=vexRT(Btn8U);
+		int RaiseUpManual=vexRT (Btn7D);
+		int RaiseDownManual=vexRT (Btn7U);
 
 		if (leftside >=10)
 			{motor [Left] =leftside;}
