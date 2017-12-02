@@ -73,7 +73,7 @@ task autonomous()
 
 	motor[InstaL]= 100;
 	motor[InstaR]= 100;
-	wait(0.7);
+	wait(0.5);
 //Mobile goal goes forward
 
 	motor[InstaL]= 0;
@@ -113,9 +113,9 @@ task autonomous()
 	motor[Lift1_R]= 0;
 //The lift stops
 
-	motor[InstaL]= -100;
-	motor[InstaR]= -100;
-	wait(1);
+	motor[InstaL]= -127;
+	motor[InstaR]= -127;
+	wait(2);
 //Mobile goal goes backward
 
 	motor[InstaL&&InstaR]=0;
