@@ -73,7 +73,7 @@ task autonomous()
 
 	motor[InstaL]= 100;
 	motor[InstaR]= 100;
-	wait(1);
+	wait(0.7);
 //Mobile goal goes forward
 
 	motor[InstaL]= 0;
@@ -124,10 +124,17 @@ task autonomous()
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 
-	while(abs(getMotorEncoder(Right)) < getStraightGoal(109.22))
+	while(abs(getMotorEncoder(Right)) < getRotationGoal(180))
 	{
 		motor[Left]= -127;
-		motor[Right]= -127;
+		motor[Right]= 127;
+	}
+	resetMotorEncoder(Left);
+	resetMotorEncoder(Right);
+	while(abs(getMotorEncoder(Right)) < getStraightGoal(109.22))
+	{
+		motor[Left]= 127;
+		motor[Right]= 127;
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
