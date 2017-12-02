@@ -66,10 +66,10 @@ task autonomous()
 {
 	motor[Lift1_L]= 127;
 	motor[Lift1_R]= 127;
-	wait(0.5);
+	wait(1);
 	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
-// The lift moves up 0.5 second
+// The lift moves up 1 second
 
 	motor[InstaL]= 100;
 	motor[InstaR]= 100;
