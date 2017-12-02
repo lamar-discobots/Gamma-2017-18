@@ -50,9 +50,15 @@ void pre_auton()
 
 task autonomous()
 {
+	motor[Lift1_L]=motor[Lift1_R]=127;
+	wait(2);
+	motor[Lift1_L]=motor[Lift1_R]=0;
+	motor[InstaL]=motor[InstaR]=127;
+	wait(2);
+	motor[InstaL]=motor[InstaR]=0;
 	motor[Left]= 127;
 	motor [Right]= 127;
-	wait(7);
+	wait(30);
 //Drivetrain goes forward for 7 seconds
 
 	motor[Left]= 0;
@@ -61,7 +67,7 @@ task autonomous()
 
 	motor[Left]= -127;
 	motor[Right]= -127;
-	wait(2);
+	wait(20);
 //Drivetrain goes backward for 2 seconds
 
 	motor[Left]= 0;
