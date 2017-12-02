@@ -131,7 +131,7 @@ task autonomous()
 	}
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
-	while(abs(getMotorEncoder(Right)) < getStraightGoal(109.22))
+	while(abs(getMotorEncoder(Right)) < getStraightGoal(170.18))
 	{
 		motor[Left]= 127;
 		motor[Right]= 127;
@@ -139,7 +139,16 @@ task autonomous()
 	motor[Left]= 0;
 	motor[Right]= 0;
 // Robot goes backwards
-
+	motor[InstaL]= 127;
+	motor[InstaR]= 127;
+	wait(2);
+	motor[InstaL]= 0;
+	motor[InstaR]= 0;
+	motor[Left]= -127;
+	motor[Right]= -127;
+	wait(1)
+	motor[Left]= 0;
+	motor[Right]= 0;
 	motor[Claw]= 0;
 //Claw stops
 }
