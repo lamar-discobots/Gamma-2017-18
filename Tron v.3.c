@@ -69,13 +69,17 @@ task autonomous()
 //Mobile goal stops
 
 
-	resetMotorEncoder(Left&&Right);
+	resetMotorEncoder(Left);
+	resetMotorEncoder(Right);
 
-	while(getMotorEncoder(Left&&Right) < 627)
+	while(getMotorEncoder(Left) < 627)
+	while(getMotorEncoder(Right) < 627)
 	{
-		motor[Left&&Right]= 127;
+		motor[Left]= 127;
+		motor[Right]= 127;
 	}
-	motor[Left&&Right]= 0;
+	motor[Left]= 0;
+	motor[Right]= 0;
 //Robot goes forward
 
 	motor[Lift1_L]= -100;
@@ -106,13 +110,17 @@ task autonomous()
 	motor[InstaL&&InstaR]=0;
 //Mobile goal stops
 
-	resetMotorEncoder(Left&&Right);
+	resetMotorEncoder(Left);
+	resetMotorEncoder(Right);
 
-	while(getMotorEncoder(Left&&Right) < 627)
+	while(getMotorEncoder(Left) < 627)
+	while(getMotorEncoder(Right) < 627)
 	{
-		motor[Left&&Right]= -127;
+		motor[Left]= -127;
+		motor[Right]= -127;
 	}
-	motor[Left&&Right]= 0;
+	motor[Left]= 0;
+	motor[Right]= 0;
 // Robot goes backwards
 
 	motor[Claw]= 0;
