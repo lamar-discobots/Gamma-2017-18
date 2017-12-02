@@ -249,3 +249,6 @@ int getStraightGoal(float cm) {
 int getRotationGoal(float deg) {
 		return 627.7*(deg/102.9);
 }
+
+
+//END FUN
