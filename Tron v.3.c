@@ -48,18 +48,18 @@ int getRotationGoal(float deg);
 
 void pre_auton()
 {
-  // Set bStopTasksBetweenModes to false if you want to keep user created tasks
-  // running between Autonomous and Driver controlled modes. You will need to
-  // manage all user created tasks if set to false.
-  bStopTasksBetweenModes = true;
+	// Set bStopTasksBetweenModes to false if you want to keep user created tasks
+	// running between Autonomous and Driver controlled modes. You will need to
+	// manage all user created tasks if set to false.
+	bStopTasksBetweenModes = true;
 
 	// Set bDisplayCompetitionStatusOnLcd to false if you don't want the LCD
 	// used by the competition include file, for example, you might want
 	// to display your team name on the LCD in this function.
 	// bDisplayCompetitionStatusOnLcd = false;
 
-  // All activities that occur before the competition starts
-  // Example: clearing encoders, setting servo positions, ...
+	// All activities that occur before the competition starts
+	// Example: clearing encoders, setting servo positions, ...
 }
 
 task autonomous()
@@ -69,76 +69,87 @@ task autonomous()
 	wait(1);
 	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
-// The lift moves up 1 second
+	// The lift moves up 1 second
 
 	motor[InstaL]= 100;
 	motor[InstaR]= 100;
 	wait(0.5);
-//Mobile goal goes forward
+	//Mobile goal goes forward
 
 	motor[InstaL]= 0;
 	motor[InstaR]= 0;
-//Mobile goal stops
-
+	//Mobile goal stops
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 
 	//while(abs(getMotorEncoder(Left)) < 627)
-	while(abs(getMotorEncoder(Right)) < getStraightGoal(109.22)) {
+	while(abs(getMotorEncoder(Right)) < getStraightGoal(129.54)) {
 		motor[Left]= 127;
 		motor[Right]= 127;
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
-//Robot goes forward
+	//Robot goes forward
 
 	motor[Lift1_L]= -100;
 	motor[Lift1_R]= -100;
 	wait(0.25);
-//The lift moves down 0.25 seconds
- 	motor[Lift1_L]= 0;
+	//The lift moves down 0.25 seconds
+	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
-//The lift stops
+	//The lift stops
 
 	motor[Claw]= 127;
 	wait(0.5);
-//Opens claw
+	//Opens claw
 
-	motor[Lift1_L]= 100;
-	motor[Lift1_R]= 100;
+	motor[Lift1_L]= 127;
+	motor[Lift1_R]= 127;
 	wait(1);
-//The lift moves up 1 second
- 	motor[Lift1_L]= 0;
+	//The lift moves up 1 second
+	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
-//The lift stops
+	//The lift stops
 
 	motor[InstaL]= -127;
 	motor[InstaR]= -127;
 	wait(2);
-//Mobile goal goes backward
+	//Mobile goal goes backward
 
 	motor[InstaL&&InstaR]=0;
-//Mobile goal stops
+	//Mobile goal stops
+
+	resetMotorEncoder(Left);
+	resetMotorEncoder(Right);
+
+	while(abs(getMotorEncoder(Right)) < getStraightGoal(90.4))
+	{
+		motor[Left]= -127;
+		motor[Right]= -127;
+	}
+	motor[Left]= 0;
+	motor[Right]= 0;
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 
 	while(abs(getMotorEncoder(Right)) < getRotationGoal(180))
 	{
-		motor[Left]= -127;
-		motor[Right]= 127;
+		motor[Left]= 127;
+		motor[Right]= -127;
 	}
+
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
-	while(abs(getMotorEncoder(Right)) < getStraightGoal(170.18))
+	while(abs(getMotorEncoder(Right)) < getStraightGoal(100))
 	{
 		motor[Left]= 127;
 		motor[Right]= 127;
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
-// Robot goes backwards
+	// Robot goes backwards
 	motor[InstaL]= 127;
 	motor[InstaR]= 127;
 	wait(2);
@@ -146,11 +157,11 @@ task autonomous()
 	motor[InstaR]= 0;
 	motor[Left]= -127;
 	motor[Right]= -127;
-	wait(1)
+	wait(1);
 	motor[Left]= 0;
 	motor[Right]= 0;
 	motor[Claw]= 0;
-//Claw stops
+	//Claw stops
 }
 
 task usercontrol()
@@ -169,20 +180,20 @@ task usercontrol()
 		int RaiseDownManual=vexRT (Btn7D);
 
 		if (leftside >=10)
-			{motor [Left] =leftside;}
+		{motor [Left] =leftside;}
 		else if (leftside <=-10)
-			{motor [Left] =leftside;}
+		{motor [Left] =leftside;}
 		else
-			{motor [Left] =0;}
-// Leftside of the drivetrain
+		{motor [Left] =0;}
+		// Leftside of the drivetrain
 
 		if (rightside >=10)
-			{motor [Right] =rightside;}
+		{motor [Right] =rightside;}
 		else if (rightside <=-10)
-			{motor [Right] =rightside;}
+		{motor [Right] =rightside;}
 		else
-			{motor [Right] =0;}
-// Rightside of the drivetrain
+		{motor [Right] =0;}
+		// Rightside of the drivetrain
 
 		if (liftup == 1){
 			motor [Lift1_R] = 127;
@@ -190,60 +201,60 @@ task usercontrol()
 			motor [RaiseR] = 127;
 			motor [RaiseL] = 127;
 		}
-// Lift 1 and raise to go up
+		// Lift 1 and raise to go up
 		else if (liftdown == 1){
 			motor [Lift1_L] = -127;
 			motor [Lift1_R] = -127;
 			motor [RaiseR] = -127;
 			motor [RaiseL] = -127;
 		}
-// Lift 1 and raise to go down
+		// Lift 1 and raise to go down
 		else{
 			motor [Lift1_R] = 0;
 			motor [Lift1_L] = 0;
 			motor [RaiseR] = 0;
 			motor [RaiseL] = 0;
 		}
-// If the Lift 1 button isn't pressed then it won't move and the raise won't move
+		// If the Lift 1 button isn't pressed then it won't move and the raise won't move
 
 		if (clawopen == 1)
-	  	motor [Claw] = 127;
-// Opens the claw
-	 	else if (clawclose == 1)
-	 	  motor [Claw] = -127;
-// Closes the claw
-	 	else
-	 		{motor [Claw] = 0;}
-// If the claw button isn't pressed then there will be no claw movement
+			motor [Claw] = 127;
+		// Opens the claw
+		else if (clawclose == 1)
+			motor [Claw] = -127;
+		// Closes the claw
+		else
+		{motor [Claw] = 0;}
+		// If the claw button isn't pressed then there will be no claw movement
 
-   	if (mobiledown == 1){
-   		motor[InstaR] = 127;
-   		motor[InstaL] = 127;
-  	}
-  	else if (mobileup == 1){
-  		motor[InstaR] = -127;
-  		motor[InstaL] = -127;
-  	}
-  	else {
-  		motor [InstaR] = 0;
-  		motor [InstaL] = 0;
-  	}
+		if (mobiledown == 1){
+			motor[InstaR] = 127;
+			motor[InstaL] = 127;
+		}
+		else if (mobileup == 1){
+			motor[InstaR] = -127;
+			motor[InstaL] = -127;
+		}
+		else {
+			motor [InstaR] = 0;
+			motor [InstaL] = 0;
+		}
 
-//RaiseUpManual
-			if (RaiseUpManual == 1){
+		//RaiseUpManual
+		if (RaiseUpManual == 1){
 			motor [RaiseR] = 127;
 			motor [RaiseL] = 127;
 		}
-// Raise to go up
+		// Raise to go up
 		else if (RaiseDownManual == 1){
 			motor [RaiseL] = -127;
 			motor [RaiseR] = -127;}
-// Raise to go down
+		// Raise to go down
 		else{
 			motor [RaiseR] = 0;
 			motor [RaiseL] = 0;}
-    UserControlCodePlaceholderForTesting();
-  }
+		UserControlCodePlaceholderForTesting();
+	}
 }
 
 
@@ -252,12 +263,12 @@ task usercontrol()
 /*** FUNCTIONS ***/
 
 int getStraightGoal(float cm) {
-		return 627.7*(cm/(wheelRadiusCM*M_PI));
+	return 627.7*(cm/(wheelRadiusCM*M_PI));
 }
 
 int getRotationGoal(float deg) {
-		return 627.7*(deg/102.9);
+	return 627.7*(deg/102.9);
 }
 
 
-//END FUN
+//END FUN O!
