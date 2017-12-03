@@ -29,13 +29,13 @@
 void autonomous() {
   motorSet(left_motor, 127);
   motorSet(right_motor, 127);
-  wait(1);
+  delay(1000);
   motorSet(left_motor, 0);
   motorSet(right_motor, 0);
-  wait(3);
+  delay(3000);
   motorSet(left_motor, 127);
   motorSet(right_motor, 127);
-  wait(1);
+  delay(1000);
   motorSet(left_motor, 0);
   motorSet(right_motor, 0);
 }
