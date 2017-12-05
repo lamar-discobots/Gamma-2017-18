@@ -142,7 +142,7 @@ task autonomous()
 	motor[InstaL]= 127;
 	motor[InstaR]= 127;
 	wait(2);
-	motor[InstaL&&Insta&&R]= 0;
+	motor[InstaL&&InstaR]= 0;
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
