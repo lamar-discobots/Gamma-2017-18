@@ -80,7 +80,6 @@ task autonomous()
 	motor[InstaR]= 0;
 //Mobile goal stops
 
-
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 
@@ -89,7 +88,7 @@ task autonomous()
 		motor[Left]= 127;
 		motor[Right]= 127;
 	}
-	motor[Left]= 0;`
+	motor[Left]= 0;
 	motor[Right]= 0;
 //Robot goes forward
 
@@ -237,9 +236,6 @@ task usercontrol()
   }
 }
 
-
-
-
 /*** FUNCTIONS ***/
 
 int getStraightGoal(float cm) {
@@ -251,4 +247,4 @@ int getRotationGoal(float deg) {
 }
 
 
-//END FUN
+//END FUNCTIONS
