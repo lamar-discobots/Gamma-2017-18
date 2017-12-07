@@ -144,13 +144,9 @@ task autonomous()
 	motor[Right]= 0;
 // The robot turns 180 degrees
 
-	resetMotorEncoder(Left);
-	resetMotorEncoder(Right);
-	while(abs(getMotorEncoder(Right)) < getStraightGoal(100))
-	{
-		motor[Left]= 127;
-		motor[Right]= 127;
-	}
+	motor[Left]= 127;
+	motor[Right]= 127;
+	wait (5);
 	motor[Left]= 0;
 	motor[Right]= 0;
 // The robot SHOULD go into the 10 point zone
