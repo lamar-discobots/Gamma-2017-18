@@ -1,6 +1,9 @@
+#pragma config(I2C_Usage, I2C1, i2cSensors)
+#pragma config(Sensor, I2C_2,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
+#pragma config(Sensor, I2C_3,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
 #pragma config(Motor,  port1,           InstaL,        tmotorVex393_HBridge, openLoop, reversed)
-#pragma config(Motor,  port2,           Left,          tmotorVex393HighSpeed_MC29, openLoop)
-#pragma config(Motor,  port3,           Right,         tmotorVex393HighSpeed_MC29, openLoop)
+#pragma config(Motor,  port2,           Right,         tmotorVex393HighSpeed_MC29, openLoop, reversed, encoderPort, I2C_2)
+#pragma config(Motor,  port3,           Left,          tmotorVex393HighSpeed_MC29, openLoop, encoderPort, I2C_3)
 #pragma config(Motor,  port5,           Claw,          tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port6,           RaiseR,        tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port7,           RaiseL,        tmotorVex393_MC29, openLoop, reversed)
@@ -175,8 +178,8 @@ task usercontrol()
 {
 	while (true)
 	{
-		int leftside=vexRT(Ch2);
-		int rightside=vexRT(Ch3);
+		int leftside=vexRT(Ch3);
+		int rightside=vexRT(Ch2);
 		int liftup=vexRT(Btn6U);
 		int liftdown=vexRT(Btn6D);
 		int clawopen=vexRT(Btn5U);
