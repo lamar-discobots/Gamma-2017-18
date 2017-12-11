@@ -142,7 +142,7 @@ task autonomous()
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
-// The robot turns 180 degrees
+// The robot turns 250 degrees
 
 	motor[Left]= 127;
 	motor[Right]= 127;
@@ -274,6 +274,5 @@ int getStraightGoal(float cm) {
 int getRotationGoal(float deg) {
 		return 392*(deg/102.9);
 }
-
 
 //END FUNCTIONS
