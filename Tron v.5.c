@@ -146,7 +146,7 @@ task autonomous()
 
 	motor[Left]= 127;
 	motor[Right]= 127;
-	wait (5);
+	wait (2.5);
 	motor[Left]= 0;
 	motor[Right]= 0;
 // The robot SHOULD go into the 10 point zone
