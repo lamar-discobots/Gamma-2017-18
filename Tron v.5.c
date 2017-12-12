@@ -1,4 +1,5 @@
 #pragma config(I2C_Usage, I2C1, i2cSensors)
+#pragma config(Sensor, in8,    Lift1_R,        sensorPotentiometer)
 #pragma config(Sensor, I2C_2,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
 #pragma config(Sensor, I2C_3,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
 #pragma config(Motor,  port1,           InstaL,        tmotorVex393_HBridge, openLoop, reversed)
@@ -115,7 +116,7 @@ task autonomous()
 
 	motor[InstaL]= -127;
 	motor[InstaR]= -127;
-	wait(2);
+	wait(1);
 //Mobile goal goes backward
 
 	motor[InstaL&&InstaR]=0;
@@ -131,7 +132,7 @@ task autonomous()
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
-// The robot goes backward from collecting the mobile goal
+// The robot goesr  backward from collecting the mobile goal
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
@@ -142,17 +143,21 @@ task autonomous()
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
-// The robot turns 250 degrees
+// The robot turns 200 degrees
 
-	motor[Left]= 127;
-	motor[Right]= 127;
-	wait (2.5);
+	resetMotorEncoder(Left);
+	resetMotorEncoder(Right);
+	while(abs(getMotorEncoder(Right)) < getStraightGoal(100))
+	{
+		motor[Left]= 127;
+		motor[Right]= 127;
+	}
 	motor[Left]= 0;
 	motor[Right]= 0;
 // The robot SHOULD go into the 10 point zone
 
 	motor[InstaL&&InstaR]= 127;
-	wait(5);
+	wait(2.5);
 	motor[InstaL&&InstaR]= 0;
 // The mobile goal system drops the mobile goal and cone into the 10 point zone
 
