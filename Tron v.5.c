@@ -135,7 +135,7 @@ task autonomous()
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
-	while(abs(getMotorEncoder(Right)) < getRotationGoal(250))
+	while(abs(getMotorEncoder(Right)) < getRotationGoal(200))
 	{
 		motor[Left]= -127;
 		motor[Right]= 127;
@@ -151,9 +151,8 @@ task autonomous()
 	motor[Right]= 0;
 // The robot SHOULD go into the 10 point zone
 
-	motor[InstaL]= 127;
-	motor[InstaR]= 127;
-	wait(1);
+	motor[InstaL&&InstaR]= 127;
+	wait(5);
 	motor[InstaL&&InstaR]= 0;
 // The mobile goal system drops the mobile goal and cone into the 10 point zone
 
