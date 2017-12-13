@@ -132,10 +132,11 @@ task autonomous()
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
-// The robot goesr  backward from collecting the mobile goal
+// The robot goes  backward from collecting the mobile goal
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
+
 	while(abs(getMotorEncoder(Right)) < getRotationGoal(200))
 	{
 		motor[Left]= -127;
@@ -147,6 +148,7 @@ task autonomous()
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
+
 	while(abs(getMotorEncoder(Right)) < getStraightGoal(100))
 	{
 		motor[Left]= 127;
@@ -171,6 +173,11 @@ task autonomous()
 	motor[Left]= 0;
 	motor[Right]= 0;
 // The robot backs away
+
+	motor[InstaL&&InstaR]= -127;
+	wait(2.5);
+	motor[InstaL&&InstaR]= 0;
+// Brings the mobile goal back into the robot
 
 	motor[Claw]= 0;
 // Claw stops
