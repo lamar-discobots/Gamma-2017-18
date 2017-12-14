@@ -137,19 +137,19 @@ task autonomous()
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 
-	while(abs(getMotorEncoder(Right)) < getRotationGoal(250))
+	while(abs(getMotorEncoder(Right)) < getRotationGoal(200))
 	{
 		motor[Left]= -127;
 		motor[Right]= 127;
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
-// The robot turns 250 degrees
+// The robot turns 200 degrees
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 
-	while(abs(getMotorEncoder(Right)) < getStraightGoal(100))
+	while(abs(getMotorEncoder(Right)) < getStraightGoal(150))
 	{
 		motor[Left]= 127;
 		motor[Right]= 127;
@@ -158,10 +158,13 @@ task autonomous()
 	motor[Right]= 0;
 // The robot SHOULD go into the 10 point zone
 
-	motor[InstaL&&InstaR]= 127;
-	wait(2.5);
-	motor[InstaL&&InstaR]= 0;
-// The mobile goal system drops the mobile goal and cone into the 10 point zone
+	motor[InstaL]= 127;
+	motor[InstaR]= 127;
+	wait(1);
+//Mobile goal goes backward
+	motor[InstaL&&InstaR]=0;
+/*Mobile goal stops
+The mobile goal system drops the mobile goal and cone into the 10 point zone*/
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
@@ -175,7 +178,7 @@ task autonomous()
 // The robot backs away
 
 	motor[InstaL&&InstaR]= -127;
-	wait(2.5);
+	wait(1.5);
 	motor[InstaL&&InstaR]= 0;
 // Brings the mobile goal back into the robot
 
