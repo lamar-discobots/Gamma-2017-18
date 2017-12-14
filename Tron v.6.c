@@ -69,7 +69,7 @@ task autonomous()
 {
 	motor[Lift1_L]= 127;
 	motor[Lift1_R]= 127;
-	wait(0.5);
+	wait(1);
 	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
 // The lift moves up 1 second
@@ -96,8 +96,8 @@ task autonomous()
 
 	motor[Lift1_L]= -100;
 	motor[Lift1_R]= -100;
-	wait(0.25);
-//The lift moves down 0.25 seconds
+	wait(0.5);
+//The lift moves down 0.5 seconds
  	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
 //The lift stops
@@ -106,8 +106,8 @@ task autonomous()
 	wait(0.5);
 //Opens claw
 
-	motor[Lift1_L]= 100;
-	motor[Lift1_R]= 100;
+	motor[Lift1_L]= 127;
+	motor[Lift1_R]= 127;
 	wait(1);
 //The lift moves up 1 second
  	motor[Lift1_L]= 0;
@@ -137,31 +137,19 @@ task autonomous()
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 
-	while(abs(getMotorEncoder(Right)) < getRotationGoal(250))
+	while(abs(getMotorEncoder(Right)) < getRotationGoal(200))
 	{
 		motor[Left]= -127;
 		motor[Right]= 127;
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
-// The robot turns 250 degrees
-
-	resetMotorEncoder(Left);
-	resetMotorEncoder(Right);
-
-	while(abs(getMotorEncoder(Right)) < getStraightGoal(100))
-	{
-		motor[Left]= 127;
-		motor[Right]= 127;
-	}
-	motor[Left]= 0;
-	motor[Right]= 0;
-// The robot SHOULD go into the 10 point zone
+// The robot turns 200 degrees
 
 	motor[InstaL&&InstaR]= 127;
 	wait(2.5);
 	motor[InstaL&&InstaR]= 0;
-// The mobile goal system drops the mobile goal and cone into the 10 point zone
+// The mobile goal system drops the mobile goal and cone into the 5 point zone
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
