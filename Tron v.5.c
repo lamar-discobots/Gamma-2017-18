@@ -158,10 +158,15 @@ task autonomous()
 	motor[Right]= 0;
 // The robot SHOULD go into the 10 point zone
 
-	motor[InstaL&&InstaR]= 127;
-	wait(2.5);
-	motor[InstaL&&InstaR]= 0;
-// The mobile goal system drops the mobile goal and cone into the 10 point zone
+	motor[InstaL]= 100;
+	motor[InstaR]= 100;
+	wait(0.5);
+//Mobile goal goes forward
+
+	motor[InstaL]= 0;
+	motor[InstaR]= 0;
+/*Mobile goal stops
+The mobile goal system drops the mobile goal and cone into the 10 point zone*/
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
@@ -174,10 +179,15 @@ task autonomous()
 	motor[Right]= 0;
 // The robot backs away
 
-	motor[InstaL&&InstaR]= -127;
-	wait(2.5);
-	motor[InstaL&&InstaR]= 0;
-// Brings the mobile goal back into the robot
+	motor[InstaL]= -100;
+	motor[InstaR]= -100;
+	wait(0.5);
+//Mobile goal goes forward
+
+	motor[InstaL]= 0;
+	motor[InstaR]= 0;
+/*Mobile goal stops
+Brings the mobile goal back into the robot*/
 
 	motor[Claw]= 0;
 // Claw stops
