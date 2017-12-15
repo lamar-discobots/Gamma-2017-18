@@ -51,6 +51,8 @@ int getRotationGoal(float deg);
 
 void pre_auton()
 {
+	resetMotorEncoder(Left);
+	resetMotorEncoder(Right);
   // Set bStopTasksBetweenModes to false if you want to keep user created tasks
   // running between Autonomous and Driver controlled modes. You will need to
   // manage all user created tasks if set to false.
@@ -96,7 +98,7 @@ task autonomous()
 
 	motor[Lift1_L]= -100;
 	motor[Lift1_R]= -100;
-	wait(0.25);
+	wait(0.5);
 //The lift moves down 0.25 seconds
  	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
@@ -137,7 +139,7 @@ task autonomous()
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 
-	while(abs(getMotorEncoder(Right)) < getRotationGoal(200))
+	while(abs(getMotorEncoder(Right)) < getRotationGoal(225))
 	{
 		motor[Left]= -127;
 		motor[Right]= 127;
@@ -158,11 +160,10 @@ task autonomous()
 	motor[Right]= 0;
 // The robot SHOULD go into the 10 point zone
 
-	motor[InstaL]= 100;
-	motor[InstaR]= 100;
-	wait(0.5);
+	motor[InstaL]= 127;
+	motor[InstaR]= 127;
+	wait(2);
 //Mobile goal goes forward
-
 	motor[InstaL]= 0;
 	motor[InstaR]= 0;
 /*Mobile goal stops
@@ -179,11 +180,9 @@ The mobile goal system drops the mobile goal and cone into the 10 point zone*/
 	motor[Right]= 0;
 // The robot backs away
 
-	motor[InstaL]= -100;
-	motor[InstaR]= -100;
-	wait(0.5);
-//Mobile goal goes forward
-
+	motor[InstaL]= -127;
+	motor[InstaR]= -127;
+	wait(2);
 	motor[InstaL]= 0;
 	motor[InstaR]= 0;
 /*Mobile goal stops
@@ -203,10 +202,10 @@ task usercontrol()
 		int liftdown=vexRT(Btn6D);
 		int clawopen=vexRT(Btn5U);
 		int clawclose=vexRT(Btn5D);
-		int mobileup=vexRT(Btn8U);
-		int mobiledown=vexRT(Btn8D);
-		int RaiseUpManual=vexRT (Btn7U);
-		int RaiseDownManual=vexRT (Btn7D);
+		int mobileup=vexRT(Btn8D);
+		int mobiledown=vexRT(Btn8U);
+		int RaiseUpManual=vexRT (Btn7D);
+		int RaiseDownManual=vexRT (Btn7U);
 
 		if (leftside >=10)
 			{motor [Left] =leftside;}
