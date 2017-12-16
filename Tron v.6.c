@@ -5,6 +5,7 @@
 #pragma config(Motor,  port1,           InstaL,        tmotorVex393_HBridge, openLoop, reversed)
 #pragma config(Motor,  port2,           Right,         tmotorVex393HighSpeed_MC29, openLoop, reversed, encoderPort, I2C_2)
 #pragma config(Motor,  port3,           Left,          tmotorVex393HighSpeed_MC29, openLoop, encoderPort, I2C_3)
+#pragma config(Motor,  port4,           Claw,          tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port5,           Claw,          tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port6,           RaiseR,        tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port7,           RaiseL,        tmotorVex393_MC29, openLoop, reversed)
@@ -51,6 +52,8 @@ int getRotationGoal(float deg);
 
 void pre_auton()
 {
+	resetMotorEncoder(Left);
+	resetMotorEncoder(Right);
   // Set bStopTasksBetweenModes to false if you want to keep user created tasks
   // running between Autonomous and Driver controlled modes. You will need to
   // manage all user created tasks if set to false.
@@ -69,24 +72,23 @@ task autonomous()
 {
 	motor[Lift1_L]= 127;
 	motor[Lift1_R]= 127;
-	wait(1);
+	wait(0.5);
 	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
-// The lift moves up 1 second
+// The lift moves up 0.5 seconds
 
-	motor[InstaL]= 100;
-	motor[InstaR]= 100;
+	motor[InstaL]= 127;
+	motor[InstaR]= 127;
 	wait(0.5);
 //Mobile goal goes forward
-
 	motor[InstaL]= 0;
 	motor[InstaR]= 0;
 //Mobile goal stops
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
-
-	while(abs(getMotorEncoder(Right)) < getStraightGoal(109.22)) {
+	while(abs(getMotorEncoder(Right)) < getStraightGoal(109.22))
+	{
 		motor[Left]= 127;
 		motor[Right]= 127;
 	}
@@ -94,8 +96,8 @@ task autonomous()
 	motor[Right]= 0;
 //Robot goes forward to collect the mobile goal
 
-	motor[Lift1_L]= -100;
-	motor[Lift1_R]= -100;
+	motor[Lift1_L]= -127;
+	motor[Lift1_R]= -127;
 	wait(0.5);
 //The lift moves down 0.5 seconds
  	motor[Lift1_L]= 0;
@@ -118,13 +120,11 @@ task autonomous()
 	motor[InstaR]= -127;
 	wait(1);
 //Mobile goal goes backward
-
 	motor[InstaL&&InstaR]=0;
 //Mobile goal stops
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
-
 	while(abs(getMotorEncoder(Right)) < getStraightGoal(109.22))
 	{
 		motor[Left]= -127;
@@ -136,8 +136,7 @@ task autonomous()
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
-
-	while(abs(getMotorEncoder(Right)) < getRotationGoal(200))
+	while(abs(getMotorEncoder(Right)) < getRotationGoal(215))
 	{
 		motor[Left]= -127;
 		motor[Right]= 127;
@@ -146,10 +145,26 @@ task autonomous()
 	motor[Right]= 0;
 // The robot turns 200 degrees
 
-	motor[InstaL&&InstaR]= 127;
-	wait(2.5);
-	motor[InstaL&&InstaR]= 0;
-// The mobile goal system drops the mobile goal and cone into the 5 point zone
+	resetMotorEncoder(Left);
+	resetMotorEncoder(Right);
+	while(abs(getMotorEncoder(Right)) < getStraightGoal(125))
+	{
+		motor[Left]= 127;
+		motor[Right]= 127;
+	}
+	motor[Left]= 0;
+	motor[Right]= 0;
+// The robot SHOULD go into the 10 point zone
+
+	resetMotorEncoder(Left);
+	resetMotorEncoder(Right);
+
+	motor[InstaL]= 127;
+	motor[InstaR]= 127;
+	wait(2);
+//Mobile goal goes forward
+	motor[InstaL&&InstaR]=0;
+//The mobile goal system drops the mobile goal and cone into the 10 point zone
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
@@ -162,10 +177,15 @@ task autonomous()
 	motor[Right]= 0;
 // The robot backs away
 
-	motor[InstaL&&InstaR]= -127;
-	wait(2.5);
-	motor[InstaL&&InstaR]= 0;
-// Brings the mobile goal back into the robot
+	resetMotorEncoder(Left);
+	resetMotorEncoder(Right);
+
+	motor[InstaL]= -127;
+	motor[InstaR]= -127;
+	wait(2);
+	motor[InstaL]= 0;
+	motor[InstaR]= 0;
+//Brings the mobile goal back into the robot
 
 	motor[Claw]= 0;
 // Claw stops
