@@ -78,7 +78,11 @@ task autonomous()
 
 	motor[InstaL]= 0;
 	motor[InstaR]= 0;
+<<<<<<< HEAD
 	//Mobile goal stops
+=======
+//Mobile goal stops
+>>>>>>> oldRobotC
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
@@ -125,6 +129,7 @@ task autonomous()
 
 	while(abs(getMotorEncoder(Right)) < getStraightGoal(90.4))
 	{
+<<<<<<< HEAD
 		motor[Left]= -127;
 		motor[Right]= -127;
 	}
@@ -136,19 +141,26 @@ task autonomous()
 
 	while(abs(getMotorEncoder(Right)) < getRotationGoal(180))
 	{
+=======
+>>>>>>> oldRobotC
 		motor[Left]= 127;
 		motor[Right]= -127;
 	}
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
+<<<<<<< HEAD
 	while(abs(getMotorEncoder(Right)) < getStraightGoal(100))
+=======
+	while(abs(getMotorEncoder(Right)) < getStraightGoal(125))
+>>>>>>> oldRobotC
 	{
 		motor[Left]= 127;
 		motor[Right]= 127;
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
+<<<<<<< HEAD
 	// Robot goes backwards
 	motor[InstaL]= 127;
 	motor[InstaR]= 127;
@@ -160,6 +172,25 @@ task autonomous()
 	wait(1);
 	motor[Left]= 0;
 	motor[Right]= 0;
+=======
+// Robot goes backwards
+
+	motor[InstaL]= 127;
+	motor[InstaR]= 127;
+	wait(2);
+	motor[InstaL&&Insta&&R]= 0;
+
+	resetMotorEncoder(Left);
+	resetMotorEncoder(Right);
+	while(abs(getMotorEncoder(Right)) < getStraightGoal(50))
+	{
+		motor[Left]= -127;
+		motor[Right]= -127;
+	}
+	motor[Left]= 0;
+	motor[Right]= 0;
+
+>>>>>>> oldRobotC
 	motor[Claw]= 0;
 	//Claw stops
 }
@@ -174,10 +205,10 @@ task usercontrol()
 		int liftdown=vexRT(Btn6D);
 		int clawopen=vexRT(Btn5U);
 		int clawclose=vexRT(Btn5D);
-		int mobileup=vexRT(Btn8U);
-		int mobiledown=vexRT(Btn8D);
-		int RaiseUpManual=vexRT (Btn7U);
-		int RaiseDownManual=vexRT (Btn7D);
+		int mobileup=vexRT(Btn8D);
+		int mobiledown=vexRT(Btn8U);
+		int RaiseUpManual=vexRT (Btn7D);
+		int RaiseDownManual=vexRT (Btn7U);
 
 		if (leftside >=10)
 		{motor [Left] =leftside;}
@@ -257,9 +288,6 @@ task usercontrol()
 	}
 }
 
-
-
-
 /*** FUNCTIONS ***/
 
 int getStraightGoal(float cm) {
@@ -271,4 +299,8 @@ int getRotationGoal(float deg) {
 }
 
 
+<<<<<<< HEAD
 //END FUN O!
+=======
+//END FUNCTIONS
+>>>>>>> oldRobotC
