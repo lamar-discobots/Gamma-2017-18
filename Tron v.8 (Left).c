@@ -105,7 +105,7 @@ task autonomous()
 //The lift stops
 
 	motor[Claw]= 127;
-	wait(0.5);
+	wait(5);
 //Opens claw
 
 	motor[Lift1_L]= 127;
@@ -118,9 +118,10 @@ task autonomous()
 
 	motor[InstaL]= -127;
 	motor[InstaR]= -127;
-	wait(1);
+	wait(0.5);
 //Mobile goal goes backward
-	motor[InstaL&&InstaR]=0;
+	motor[InstaL]=0;
+	motor[InstaR]=0;
 //Mobile goal stops
 
 	resetMotorEncoder(Left);
@@ -138,8 +139,8 @@ task autonomous()
 	resetMotorEncoder(Right);
 	while(abs(getMotorEncoder(Right)) < getRotationGoal(215))
 	{
-		motor[Left]= -127;
-		motor[Right]= 127;
+		motor[Left]= 127;
+		motor[Right]= -127;
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
@@ -156,15 +157,13 @@ task autonomous()
 	motor[Right]= 0;
 // The robot SHOULD go into the 10 point zone
 
-	resetMotorEncoder(Left);
-	resetMotorEncoder(Right);
-
 	motor[InstaL]= 127;
 	motor[InstaR]= 127;
-	wait(2);
+	wait(0.5);
 //Mobile goal goes forward
-	motor[InstaL&&InstaR]=0;
-//The mobile goal system drops the mobile goal and cone into the 10 point zone
+	motor[InstaL]= 0;
+	motor[InstaR]= 0;
+//Mobile goal stops
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
@@ -177,15 +176,13 @@ task autonomous()
 	motor[Right]= 0;
 // The robot backs away
 
-	resetMotorEncoder(Left);
-	resetMotorEncoder(Right);
-
 	motor[InstaL]= -127;
 	motor[InstaR]= -127;
-	wait(2);
+	wait(0.5);
+//Mobile goal goes backward
 	motor[InstaL]= 0;
 	motor[InstaR]= 0;
-//Brings the mobile goal back into the robot
+//Mobile goal stops
 
 	motor[Claw]= 0;
 // Claw stops
