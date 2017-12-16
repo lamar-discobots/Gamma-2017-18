@@ -71,7 +71,11 @@ void pre_auton()
 task autonomous()
 {
 	motor[Lift1_L]=motor[Lift1_R]=127;
-	motor[InstaL]=motor[InstaR]=127;
+	motor[Lift1_L]=motor[Lift1_R]=0;
+	//lifts lift
+	motor[InstaL]=motor[InstaR]=-127;
+	motor[InstaL]=motor[InstaR]=0;
+	//moblie down
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 	while(abs(getMotorEncoder(Right)) < getStraightGoal(300))
@@ -81,7 +85,10 @@ task autonomous()
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
+	//foward pushing mobiles
 	motor[InstaL]=motor[InstaR]=-127;
+	motor[InstaL]=motor[InstaR]=0;
+	//lifts mobile
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 	while(abs(getMotorEncoder(Right)) < getStraightGoal(44.84))
@@ -91,7 +98,10 @@ task autonomous()
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
-	motor[InstaL]=motor[InstaR]=127;
+	//puts mobile in zone
+	motor[InstaL]=motor[InstaR]=-127;
+	motor[InstaL]=motor[InstaR]=0;
+	//drops mobile in zone
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 	while(abs(getMotorEncoder(Right)) < getStraightGoal(344.84))
@@ -101,6 +111,7 @@ task autonomous()
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
+	//backs it up
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 	while(abs(getMotorEncoder(Right)) < getRotationGoal(90))
@@ -110,6 +121,7 @@ task autonomous()
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
+	//turns
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 	while(abs(getMotorEncoder(Right)) < getStraightGoal(86.21))
@@ -119,6 +131,7 @@ task autonomous()
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
+	//foward
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 	while(abs(getMotorEncoder(Right)) < getRotationGoal(90))
@@ -128,6 +141,7 @@ task autonomous()
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
+	//turns
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 	while(abs(getMotorEncoder(Right)) < getStraightGoal(300))
@@ -137,7 +151,8 @@ task autonomous()
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
-	motor[InstaL]=motor[InstaR]=-127;
+	motor[InstaL]=motor[InstaR]=127;
+	motor[InstaL]=motor[InstaR]=0;
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 	while(abs(getMotorEncoder(Right)) < getStraightGoal(44.84))
@@ -147,7 +162,9 @@ task autonomous()
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
-	motor[InstaL]=motor[InstaR]=127;
+	motor[InstaL]=motor[InstaR]=-127;
+	motor[InstaL]=motor[InstaR]=0
+	;
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 	while(abs(getMotorEncoder(Right)) < getStraightGoal(344.84))
