@@ -51,6 +51,8 @@ int getRotationGoal(float deg);
 
 void pre_auton()
 {
+	resetMotorEncoder(Left);
+	resetMotorEncoder(Right);
   // Set bStopTasksBetweenModes to false if you want to keep user created tasks
   // running between Autonomous and Driver controlled modes. You will need to
   // manage all user created tasks if set to false.
@@ -96,7 +98,7 @@ task autonomous()
 
 	motor[Lift1_L]= -100;
 	motor[Lift1_R]= -100;
-	wait(0.25);
+	wait(0.5);
 //The lift moves down 0.25 seconds
  	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
@@ -137,7 +139,7 @@ task autonomous()
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
 
-	while(abs(getMotorEncoder(Right)) < getRotationGoal(200))
+	while(abs(getMotorEncoder(Right)) < getRotationGoal(225))
 	{
 		motor[Left]= -127;
 		motor[Right]= 127;
@@ -160,9 +162,16 @@ task autonomous()
 
 	motor[InstaL]= 127;
 	motor[InstaR]= 127;
+<<<<<<< HEAD
 	wait(1);
 //Mobile goal goes backward
 	motor[InstaL&&InstaR]=0;
+=======
+	wait(2);
+//Mobile goal goes forward
+	motor[InstaL]= 0;
+	motor[InstaR]= 0;
+>>>>>>> oldRobotC
 /*Mobile goal stops
 The mobile goal system drops the mobile goal and cone into the 10 point zone*/
 
@@ -177,10 +186,20 @@ The mobile goal system drops the mobile goal and cone into the 10 point zone*/
 	motor[Right]= 0;
 // The robot backs away
 
+<<<<<<< HEAD
 	motor[InstaL&&InstaR]= -127;
 	wait(1.5);
 	motor[InstaL&&InstaR]= 0;
 // Brings the mobile goal back into the robot
+=======
+	motor[InstaL]= -127;
+	motor[InstaR]= -127;
+	wait(2);
+	motor[InstaL]= 0;
+	motor[InstaR]= 0;
+/*Mobile goal stops
+Brings the mobile goal back into the robot*/
+>>>>>>> oldRobotC
 
 	motor[Claw]= 0;
 // Claw stops
