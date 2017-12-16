@@ -136,7 +136,7 @@ task autonomous()
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
-	while(abs(getMotorEncoder(Right)) < getRotationGoal(200))
+	while(abs(getMotorEncoder(Right)) < getRotationGoal(220))
 	{
 		motor[Left]= -127;
 		motor[Right]= 127;
