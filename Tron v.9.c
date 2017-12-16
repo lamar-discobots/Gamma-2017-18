@@ -72,12 +72,12 @@ void pre_auton()
 task autonomous()
 {
 	moveArm(90, 100);
-	/*motor[Lift1_L]= 127;
+/*motor[Lift1_L]= 127;
 	motor[Lift1_R]= 127;
 	wait(0.5);
 	motor[Lift1_L]= 0;
-	motor[Lift1_R]= 0;*/
-// The lift moves up 0.5 seconds
+	motor[Lift1_R]= 0;
+The lift moves up 0.5 seconds */
 
 	motor[InstaL]= 127;
 	motor[InstaR]= 127;
