@@ -88,7 +88,7 @@ task autonomous()
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
-	while(abs(getMotorEncoder(Right)) < getStraightGoal(115))
+	while(abs(getMotorEncoder(Right)) < getStraightGoal(120))
 	{
 		motor[Left]= 127;
 		motor[Right]= 127;
@@ -125,7 +125,7 @@ task autonomous()
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
-	while(abs(getMotorEncoder(Right)) < getStraightGoal(112))
+	while(abs(getMotorEncoder(Right)) < getStraightGoal(117))
 	{
 		motor[Left]= -127;
 		motor[Right]= -127;
