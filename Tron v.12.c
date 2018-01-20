@@ -136,14 +136,14 @@ task autonomous()
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
-	while(abs(getMotorEncoder(Right)) < getRotationGoal(275))
+	while(abs(getMotorEncoder(Right)) < getRotationGoal(265))
 	{
 		motor[Left]= -127;
 		motor[Right]= 127;
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
-// The robot turns 275 degrees
+// The robot turns 265 degrees
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
