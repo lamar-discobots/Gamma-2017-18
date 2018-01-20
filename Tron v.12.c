@@ -107,15 +107,13 @@ task autonomous()
 
 	motor[Claw]= 127;
 	wait(1.5);
-	motor[Claw]= 0;
-// Claw drops cone
-
 	motor[Lift1_L]= 127;
 	motor[Lift1_R]= 127;
 	wait(1.5);
 //The lift moves up 1.5 seconds
  	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
+	motor[Claw]= 0;
 //The lift stops
 
 	motor[InstaL]= -127;

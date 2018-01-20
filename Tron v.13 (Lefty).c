@@ -106,6 +106,7 @@ task autonomous()
 //The lift stops
 
 	motor[Claw]= 127;
+	wait(1.5);
 	motor[Lift1_L]= 127;
 	motor[Lift1_R]= 127;
 	wait(1.5);
@@ -143,7 +144,7 @@ task autonomous()
 	}
 	motor[Left]= 0;
 	motor[Right]= 0;
-// The robot turns 265 degrees (Lefty)
+// The robot turns 265 degrees
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
