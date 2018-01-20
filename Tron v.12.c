@@ -73,10 +73,10 @@ task autonomous()
 {
 	motor[Lift1_L]= 127;
 	motor[Lift1_R]= 127;
-	wait(0.5);
+	wait(1);
 	motor[Lift1_L]= 0;
 	motor[Lift1_R]= 0;
-//The lift moves up 0.5 seconds
+//The lift moves up 1 second
 
 	motor[InstaL]= 127;
 	motor[InstaR]= 127;
@@ -88,7 +88,7 @@ task autonomous()
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
-	while(abs(getMotorEncoder(Right)) < getStraightGoal(120))
+	while(abs(getMotorEncoder(Right)) < getStraightGoal(125))
 	{
 		motor[Left]= 85;
 		motor[Right]= 85;
@@ -126,7 +126,7 @@ task autonomous()
 
 	resetMotorEncoder(Left);
 	resetMotorEncoder(Right);
-	while(abs(getMotorEncoder(Right)) < getStraightGoal(117))
+	while(abs(getMotorEncoder(Right)) < getStraightGoal(122))
 	{
 		motor[Left]= -127;
 		motor[Right]= -127;
