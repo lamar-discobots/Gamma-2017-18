@@ -201,8 +201,8 @@ task usercontrol()
 
 		else
 		{
-			motor [LiftR] = 0;
-			motor [LiftL] = 0;
+			motor [LiftR] = 10;
+			motor [LiftL] = 10;
 		}
 // If the Lift 1 button isn't pressed then it won't move and the raise won't move
 
